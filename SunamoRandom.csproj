@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>24.1.10.1</Version>
+    <Version>24.1.24.1</Version>
     <Description>Generate random objects and values</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -13,7 +13,6 @@
     <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SunamoValues" Version="24.1.10.1" />
-    <PackageReference Include="SunamoExceptions" Version="24.1.11.1" />
+    <PackageReference Include="SunamoExceptions" Version="24.1.14.1" />
   </ItemGroup>
 </Project>

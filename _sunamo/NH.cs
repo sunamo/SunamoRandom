@@ -1,7 +1,7 @@
-namespace SunamoRandom._sunamo;
+//namespace SunamoRandom._sunamo;
 
-internal class NH
-{
-    internal static Func<int, int> MinForLength;
-    internal static Func<int, int> MaxForLength;
-}
+//public class NH
+//{
+//    public static Func<int, int> MinForLength;
+//    public static Func<int, int> MaxForLength;
+//}

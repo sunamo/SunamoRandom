@@ -11,7 +11,7 @@ public class RandomHelperList
 
         for (int i = 0; i < count; i++)
         {
-            result.Add(RandomHelper.RandomInt(NH.MinForLength(length), NH.MaxForLength(length)));
+            result.Add(RandomHelper.RandomInt(int.Parse("1".PadRight(4, '0')), int.Parse("9".PadRight(4, '9'))));
         }
 
         return result;
