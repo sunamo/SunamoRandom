@@ -3,7 +3,7 @@ namespace SunamoRandom;
 
 public static partial class RandomHelper
 {
-
+    static Random random = new Random();
     private static float s_lightColorBase = (float)(256 - 229);
 
     public static float RandomFloat(int p, float maxValue, int maxP)
@@ -280,9 +280,9 @@ public static partial class RandomHelper
     {
         DateTime result = Consts.DateTimeMinVal;
         result = result.AddDays(RandomHelper.RandomDouble(1, 28));
-        result = result.AddMonths(RandomHelper.RandomInt(1, 12));
+        result = result.AddMonths(random.Next(1, 12));
         var yearTo2 = yearTo - DTConstants.yearStartUnixDate;
-        result = result.AddYears(RandomHelper.RandomInt(1, yearTo2) + 70);
+        result = result.AddYears(random.Next(1, yearTo2) + 70);
 
         result = result.AddHours(RandomDouble(1, 24));
         result = result.AddMinutes(RandomDouble(1, 60));

@@ -31,7 +31,7 @@ public static partial class RandomHelper
         }
         if (od > to)
         {
-            ThrowEx.Custom($"From {od} is higher than to {to}");
+            throw new Exception($"From {od} is higher than to {to}");
         }
 
         return s_rnd.Next(od, to + 1);
