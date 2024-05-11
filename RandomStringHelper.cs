@@ -20,7 +20,7 @@ public class RandomStringHelper
 
         for (; i < numberOfNonAlphanumericCharacters; i++)
         {
-            stringChars[i] = AllCharsSE.specialCharsAll[random.Next(AllCharsSE.specialCharsAll.Count)];
+            stringChars[i] = AllChars.specialCharsAll[random.Next(AllChars.specialCharsAll.Count)];
         }
 
         for (; i < v; i++)
