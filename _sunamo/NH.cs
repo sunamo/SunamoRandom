@@ -1,4 +1,4 @@
-namespace SunamoRandom._sunamo;
+namespace SunamoRandom;
 
 //namespace SunamoRandom._sunamo;
 
