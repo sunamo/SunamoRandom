@@ -181,7 +181,8 @@ public static partial class RandomHelper
     /// </summary>
     public static char RandomCharWithoutSpecial()
     {
-        return RandomElementOfCollection(vsZnakyWithoutSpecial)[0];
+        throw new NotImplementedException();
+        //return RandomElementOfCollection(vsZnakyWithoutSpecial)[0];
     }
 
 
