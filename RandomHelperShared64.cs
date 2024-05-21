@@ -20,8 +20,7 @@ public static partial class RandomHelper
 
     public static char RandomChar()
     {
-        throw new NotImplementedException();
-        //return RandomElementOfCollection(vsZnaky)[0];
+        return RandomElementOfCollection(AllChars.vsZnaky)[0];
     }
 
     public static string RandomElementOfCollection(IList ppk)
