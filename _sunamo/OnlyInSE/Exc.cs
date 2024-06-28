@@ -1,3 +1,5 @@
+
+namespace SunamoRandom;
 using System.Diagnostics;
 using System.Text;
 

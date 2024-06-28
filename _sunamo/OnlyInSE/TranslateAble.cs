@@ -1,3 +1,5 @@
+
+namespace SunamoRandom;
 public class TranslateAble
 {
     
