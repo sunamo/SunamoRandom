@@ -1,4 +1,4 @@
-﻿namespace SunamoRandom;
+namespace SunamoRandom;
 
 public static partial class RandomHelper
 {

@@ -1,4 +1,4 @@
-namespace SunamoRandom;
+namespace SunamoRandom._sunamo.SunamoValues;
 
 
 
