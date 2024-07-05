@@ -1,4 +1,3 @@
-
 namespace SunamoRandom._sunamo.SunamoValues;
 internal class AllChars
 {
