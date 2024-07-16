@@ -1,8 +1,5 @@
 namespace SunamoRandom;
 
-
-
-
 public class RandomHelperList
 {
     public static List<int> GenerateNumbers(int length, int count)
