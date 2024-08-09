@@ -2,40 +2,39 @@ namespace SunamoRandom;
 
 public static partial class RandomHelper
 {
-    static Random random = new Random();
-    private static float s_lightColorBase = (float)(256 - 229);
+    private static readonly Random random = new();
+    private static readonly float s_lightColorBase = 256 - 229;
+
+
+    public static Type type = typeof(RandomHelper);
+
+    /// <summary>
+    ///     It is very random. The seed is always different because the seed is also random generated.
+    /// </summary>
+    private static readonly Random s_rnd = new(Guid.NewGuid().GetHashCode());
 
     public static float RandomFloat(int p, float maxValue, int maxP)
     {
-        if (p > 7)
-        {
-            p = 7;
-        }
-        string predCarkou = "";
+        if (p > 7) p = 7;
+        var predCarkou = "";
         if (maxP > 8)
-        {
-            predCarkou = RandomHelper.RandomNumberString(p);
-        }
+            predCarkou = RandomNumberString(p);
         else
-        {
             predCarkou = RandomInt(maxP + 1).ToString();
-        }
 
-        int z = 7 - p;
+        var z = 7 - p;
         float vr = 0;
         if (z != 0)
         {
-            string zaCarkou = RandomHelper.RandomNumberString(z);
+            var zaCarkou = RandomNumberString(z);
             vr = float.Parse(predCarkou + AllStrings.dot + zaCarkou);
         }
         else
         {
             vr = float.Parse(predCarkou);
         }
-        if (vr > maxValue)
-        {
-            return maxValue;
-        }
+
+        if (vr > maxValue) return maxValue;
         return vr;
     }
 
@@ -47,11 +46,8 @@ public static partial class RandomHelper
     private static string RandomNumberString(int delka)
     {
         delka--;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i != delka; i++)
-        {
-            sb.Append(RandomNumberChar());
-        }
+        var sb = new StringBuilder();
+        for (var i = 0; i != delka; i++) sb.Append(RandomNumberChar());
         return sb.ToString();
     }
 
@@ -60,10 +56,11 @@ public static partial class RandomHelper
     {
         if (light)
         {
-            float r = RandomFloatBetween0And1();
+            var r = RandomFloatBetween0And1();
             r *= s_lightColorBase;
             return (byte)(r + add);
         }
+
         return RandomByte(0, 255);
     }
 
@@ -83,18 +80,16 @@ public static partial class RandomHelper
     }
 
 
-
     /// <summary>
-    /// better is take keys from dict and RandomElementOfCollection
+    ///     better is take keys from dict and RandomElementOfCollection
     /// </summary>
     /// <typeparam name="Key"></typeparam>
     /// <typeparam name="Value"></typeparam>
     /// <param name="dict"></param>
     public static Key RandomKeyOfDictionary<Key, Value>(Dictionary<Key, Value> dict)
     {
-        return default(Key);
+        return default;
     }
-
 
 
     //     public static T RandomElementOfCollectionT<T>(IList<T> ppk)
@@ -110,62 +105,46 @@ public static partial class RandomHelper
 
     public static T RandomElementOfCollectionT<T>(IList<T> ppk)
     {
-        if (ppk.Count == 0)
-        {
-            return default(T);
-        }
-        int nt = RandomInt(ppk.Count);
+        if (ppk.Count == 0) return default;
+        var nt = RandomInt(ppk.Count);
         return ppk[nt];
     }
-
 
 
     public static T RandomEnum<T>()
         where T : struct, Enum
     {
         var v = Enum.GetValues<T>();
-        var s = RandomElementOfCollectionT<T>(v);
+        var s = RandomElementOfCollectionT(v);
         return s;
     }
 
 
-
     public static string RandomElementOfCollection(Array ppk)
     {
-        int nt = RandomInt(ppk.Length);
+        var nt = RandomInt(ppk.Length);
         return ppk.GetValue(nt).ToString();
     }
 
-
-
-    public static Type type = typeof(RandomHelper);
-
     /// <summary>
-    /// Zad�vej ��slo o 1 v�t�� ne� skute�n� po�et znak� kter� chce�
-    /// Vr�t� mi n�hodn� �et�zec pouze z velk�ch, mal�ch p�smen a ��slic
-    /// Call ToLower when save to DB
-    /// Newly call ToLower automatically
+    ///     Zad�vej ��slo o 1 v�t�� ne� skute�n� po�et znak� kter� chce�
+    ///     Vr�t� mi n�hodn� �et�zec pouze z velk�ch, mal�ch p�smen a ��slic
+    ///     Call ToLower when save to DB
+    ///     Newly call ToLower automatically
     /// </summary>
     /// <param name="delka"></param>
     public static string RandomStringWithoutSpecial(int delka, bool alsoUpper = false)
     {
         delka--;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i != delka; i++)
-        {
-
-            sb.Append(RandomCharWithoutSpecial());
-        }
+        var sb = new StringBuilder();
+        for (var i = 0; i != delka; i++) sb.Append(RandomCharWithoutSpecial());
         var result = sb.ToString();
-        if (!alsoUpper)
-        {
-            return result.ToLower();
-        }
+        if (!alsoUpper) return result.ToLower();
         return result;
     }
 
     /// <summary>
-    /// Hod� se pro po��tan� index� proto�e vrac� ��slo mezi A1 do A2-1
+    ///     Hod� se pro po��tan� index� proto�e vrac� ��slo mezi A1 do A2-1
     /// </summary>
     /// <param name="od"></param>
     /// <param name="to"></param>
@@ -175,8 +154,8 @@ public static partial class RandomHelper
     }
 
     /// <summary>
-    /// Vr�t� mi n�hodn� znak pouze z velk�ch, mal�ch p�smen a ��slic
-    /// Call ToLower when save to DB
+    ///     Vr�t� mi n�hodn� znak pouze z velk�ch, mal�ch p�smen a ��slic
+    ///     Call ToLower when save to DB
     /// </summary>
     public static char RandomCharWithoutSpecial()
     {
@@ -184,76 +163,55 @@ public static partial class RandomHelper
     }
 
 
-
-
     public static string RandomString(int delka, bool upper, bool lower, bool numeric, bool special)
     {
-        List<char> ch = new List<char>();
-        if (lower)
-        {
-            ch.AddRange(AllChars.lowerChars);
-        }
-        if (numeric)
-        {
-            ch.AddRange(AllChars.numericChars);
-        }
-        if (special)
-        {
-            ch.AddRange(AllChars.specialChars);
-        }
-        if (upper)
-        {
-            ch.AddRange(AllChars.upperChars);
-        }
+        var ch = new List<char>();
+        if (lower) ch.AddRange(AllChars.lowerChars);
+        if (numeric) ch.AddRange(AllChars.numericChars);
+        if (special) ch.AddRange(AllChars.specialChars);
+        if (upper) ch.AddRange(AllChars.upperChars);
 
         delka--;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i != delka; i++)
-        {
-            sb.Append(RandomElementOfCollection(ch));
-        }
+        var sb = new StringBuilder();
+        for (var i = 0; i != delka; i++) sb.Append(RandomElementOfCollection(ch));
         return sb.ToString();
     }
+
     public static string RandomString()
     {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 7; i++)
-        {
-            sb.Append(RandomChar());
-        }
+        var sb = new StringBuilder();
+        for (var i = 0; i < 7; i++) sb.Append(RandomChar());
         return sb.ToString();
     }
 
     public static byte[] RandomBytes(int kolik)
     {
-        byte[] b = new byte[kolik];
-        for (int i = 0; i < kolik; i++)
-        {
-            b[i] = (byte)s_rnd.Next(0, byte.MaxValue);
-        }
+        var b = new byte[kolik];
+        for (var i = 0; i < kolik; i++) b[i] = (byte)s_rnd.Next(0, byte.MaxValue);
         return b;
     }
 
 
-
     /// <summary>
-    /// Vr�t� ��slo mezi 0 a A1-1
+    ///     Vr�t� ��slo mezi 0 a A1-1
     /// </summary>
     /// <param name="to"></param>
     public static short RandomShort(short to)
     {
         return (short)s_rnd.Next(0, to);
     }
+
     /// <summary>
-    /// Vr�t� ��slo mezi A1 v�etn� a A2+1 v�etn�
+    ///     Vr�t� ��slo mezi A1 v�etn� a A2+1 v�etn�
     /// </summary>
     /// <param name="to"></param>
     public static short RandomShort(short from, short to)
     {
         return (short)s_rnd.Next(from, to + 1);
     }
+
     /// <summary>
-    /// Vr�t� ��slo mezi 0 a short.MaxValue-1
+    ///     Vr�t� ��slo mezi 0 a short.MaxValue-1
     /// </summary>
     public static short RandomShort()
     {
@@ -262,23 +220,19 @@ public static partial class RandomHelper
 
     public static bool RandomBool()
     {
-        int nt = RandomInt(2);
-        string pars = "";
+        var nt = RandomInt(2);
+        var pars = "";
         if (nt == 0)
-        {
             pars = bool.FalseString;
-        }
         else
-        {
             pars = bool.TrueString;
-        }
         return bool.Parse(pars);
     }
 
     public static DateTime RandomDateTime(int yearTo)
     {
-        DateTime result = Consts.DateTimeMinVal;
-        result = result.AddDays(RandomHelper.RandomDouble(1, 28));
+        var result = Consts.DateTimeMinVal;
+        result = result.AddDays(RandomDouble(1, 28));
         result = result.AddMonths(random.Next(1, 12));
         var yearTo2 = yearTo - DTConstants.yearStartUnixDate;
         result = result.AddYears(random.Next(1, yearTo2) + 70);
@@ -292,20 +246,16 @@ public static partial class RandomHelper
 
     private static double RandomDouble(int v1, int v2)
     {
-        return (double)RandomInt(v1, v2);
+        return RandomInt(v1, v2);
     }
 
     public static string RandomString(int delka)
     {
         delka--;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i != delka; i++)
-        {
-            sb.Append(RandomChar());
-        }
+        var sb = new StringBuilder();
+        for (var i = 0; i != delka; i++) sb.Append(RandomChar());
         return sb.ToString();
     }
-
 
 
     public static char RandomChar()
@@ -315,21 +265,16 @@ public static partial class RandomHelper
 
     public static string RandomElementOfCollection(IList ppk)
     {
-        int nt = RandomInt(ppk.Count);
+        var nt = RandomInt(ppk.Count);
         return ppk[nt].ToString();
     }
 
     /// <summary>
-    /// Vr�t� ��slo mezi 0 a A1-1
+    ///     Vr�t� ��slo mezi 0 a A1-1
     /// </summary>
     /// <param name="to"></param>
     public static int RandomInt(int to)
     {
         return s_rnd.Next(0, to);
     }
-
-    /// <summary>
-    /// It is very random. The seed is always different because the seed is also random generated.
-    /// </summary>
-    private static Random s_rnd = new Random(Guid.NewGuid().GetHashCode());
 }
