@@ -5,7 +5,7 @@ global using System.Collections;
 global using System.Runtime.CompilerServices;
 global using System.IO;
 global using System.Linq;
-global using SunamoRandom._sunamo.SunamoValues;
+global using SunamoRandom;
 global using SunamoRandom._sunamo.SunamoExceptions;
 global using SunamoRandom._sunamo.SunamoValues.Constants;
 global using System.Diagnostics;

@@ -1,5 +1,6 @@
 namespace SunamoRandom;
 
+
 public static partial class RandomHelper
 {
     private static readonly Random random = new();
@@ -27,7 +28,7 @@ public static partial class RandomHelper
         if (z != 0)
         {
             var zaCarkou = RandomNumberString(z);
-            vr = float.Parse(predCarkou + AllStrings.dot + zaCarkou);
+            vr = float.Parse(predCarkou + "." + zaCarkou);
         }
         else
         {
@@ -40,7 +41,8 @@ public static partial class RandomHelper
 
     private static char RandomNumberChar()
     {
-        return RandomElementOfCollection(AllChars.numericChars)[0];
+        LetterAndDigitCharService letterAndDigitChar = new LetterAndDigitCharService();
+        return RandomElementOfCollection(letterAndDigitChar.allChars)[0];
     }
 
     private static string RandomNumberString(int delka)
@@ -159,17 +161,21 @@ public static partial class RandomHelper
     /// </summary>
     public static char RandomCharWithoutSpecial()
     {
-        return RandomElementOfCollection(AllChars.vsZnakyWithoutSpecial)[0];
+        LetterAndDigitCharService letterAndDigitChar = new LetterAndDigitCharService();
+        return RandomElementOfCollection(letterAndDigitChar.allCharsWithoutSpecial)[0];
     }
 
 
     public static string RandomString(int delka, bool upper, bool lower, bool numeric, bool special)
     {
+        LetterAndDigitCharService letterAndDigitChar = new();
+        SpecialCharsService specialChars = new();
+
         var ch = new List<char>();
-        if (lower) ch.AddRange(AllChars.lowerChars);
-        if (numeric) ch.AddRange(AllChars.numericChars);
-        if (special) ch.AddRange(AllChars.specialChars);
-        if (upper) ch.AddRange(AllChars.upperChars);
+        if (lower) ch.AddRange(letterAndDigitChar.lowerChars);
+        if (numeric) ch.AddRange(letterAndDigitChar.numericChars);
+        if (special) ch.AddRange(specialChars.specialChars);
+        if (upper) ch.AddRange(letterAndDigitChar.upperChars);
 
         delka--;
         var sb = new StringBuilder();
@@ -231,7 +237,7 @@ public static partial class RandomHelper
 
     public static DateTime RandomDateTime(int yearTo)
     {
-        var result = Consts.DateTimeMinVal;
+        DateTime result = new(1900, 1, 1);
         result = result.AddDays(RandomDouble(1, 28));
         result = result.AddMonths(random.Next(1, 12));
         var yearTo2 = yearTo - DTConstants.yearStartUnixDate;
@@ -260,7 +266,8 @@ public static partial class RandomHelper
 
     public static char RandomChar()
     {
-        return RandomElementOfCollection(AllChars.vsZnaky)[0];
+        LetterAndDigitCharService letterAndDigitChar = new();
+        return RandomElementOfCollection(letterAndDigitChar.allChars)[0];
     }
 
     public static string RandomElementOfCollection(IList ppk)
