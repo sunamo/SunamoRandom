@@ -7,7 +7,7 @@ public class RandomHelperList
         List<int> result = new(count);
         var random = new Random();
         for (var i = 0; i < count; i++)
-            result.Add(random.Next(int.Parse("1".PadRight(4, '0')), int.Parse("9".PadRight(4, '9'))));
+            result.Add(random.Next(int.Parse("1".PadRight(length, '0')), int.Parse("9".PadRight(length, '9'))));
 
         return result;
     }

@@ -82,16 +82,16 @@ public static partial class RandomHelper
     }
 
 
-    /// <summary>
-    ///     better is take keys from dict and RandomElementOfCollection
-    /// </summary>
-    /// <typeparam name="Key"></typeparam>
-    /// <typeparam name="Value"></typeparam>
-    /// <param name="dict"></param>
-    public static Key RandomKeyOfDictionary<Key, Value>(Dictionary<Key, Value> dict)
-    {
-        return default;
-    }
+    ///// <summary>
+    /////     better is take keys from dict and RandomElementOfCollection
+    ///// </summary>
+    ///// <typeparam name="Key"></typeparam>
+    ///// <typeparam name="Value"></typeparam>
+    ///// <param name="dict"></param>
+    //public static Key RandomKeyOfDictionary<Key, Value>(Dictionary<Key, Value> dict)
+    //{
+    //    return default;
+    //}
 
 
     //     public static T RandomElementOfCollectionT<T>(IList<T> ppk)
