@@ -1,3 +1,6 @@
+// EN: Variable names have been checked and replaced with self-descriptive names
+// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
+
 namespace SunamoRandom;
 
 
@@ -23,11 +26,11 @@ public static partial class RandomHelper
         else
             predCarkou = RandomInt(maxP + 1).ToString();
 
-        var z = 7 - p;
+        var zValue = 7 - p;
         float vr = 0;
-        if (z != 0)
+        if (zValue != 0)
         {
-            var zaCarkou = RandomNumberString(z);
+            var zaCarkou = RandomNumberString(zValue);
             vr = float.Parse(predCarkou + "." + zaCarkou);
         }
         else
@@ -48,9 +51,9 @@ public static partial class RandomHelper
     private static string RandomNumberString(int delka)
     {
         delka--;
-        var sb = new StringBuilder();
-        for (var i = 0; i != delka; i++) sb.Append(RandomNumberChar());
-        return sb.ToString();
+        var stringBuilder = new StringBuilder();
+        for (var i = 0; i != delka; i++) stringBuilder.Append(RandomNumberChar());
+        return stringBuilder.ToString();
     }
 
 
@@ -58,9 +61,9 @@ public static partial class RandomHelper
     {
         if (light)
         {
-            var r = RandomFloatBetween0And1();
-            r *= s_lightColorBase;
-            return (byte)(r + add);
+            var result = RandomFloatBetween0And1();
+            result *= s_lightColorBase;
+            return (byte)(result + add);
         }
 
         return RandomByte(0, 255);
@@ -116,9 +119,9 @@ public static partial class RandomHelper
     public static T RandomEnum<T>()
         where T : struct, Enum
     {
-        var v = Enum.GetValues<T>();
-        var s = RandomElementOfCollectionT(v);
-        return s;
+        var value = Enum.GetValues<T>();
+        var text = RandomElementOfCollectionT(value);
+        return text;
     }
 
 
@@ -129,8 +132,8 @@ public static partial class RandomHelper
     }
 
     /// <summary>
-    ///     Zad�vej ��slo o 1 v�t�� ne� skute�n� po�et znak� kter� chce�
-    ///     Vr�t� mi n�hodn� �et�zec pouze z velk�ch, mal�ch p�smen a ��slic
+    ///     Zad�vej ��slo o 1 value�t�� ne� skute�n� po�et znak� kter� chce�
+    ///     Vr�t� mi n�hodn� �et�zec pouze zValue velk�ch, mal�ch p�smen a ��slic
     ///     Call ToLower when save to DB
     ///     Newly call ToLower automatically
     /// </summary>
@@ -138,9 +141,9 @@ public static partial class RandomHelper
     public static string RandomStringWithoutSpecial(int delka, bool alsoUpper = false)
     {
         delka--;
-        var sb = new StringBuilder();
-        for (var i = 0; i != delka; i++) sb.Append(RandomCharWithoutSpecial());
-        var result = sb.ToString();
+        var stringBuilder = new StringBuilder();
+        for (var i = 0; i != delka; i++) stringBuilder.Append(RandomCharWithoutSpecial());
+        var result = stringBuilder.ToString();
         if (!alsoUpper) return result.ToLower();
         return result;
     }
@@ -156,7 +159,7 @@ public static partial class RandomHelper
     }
 
     /// <summary>
-    ///     Vr�t� mi n�hodn� znak pouze z velk�ch, mal�ch p�smen a ��slic
+    ///     Vr�t� mi n�hodn� znak pouze zValue velk�ch, mal�ch p�smen a ��slic
     ///     Call ToLower when save to DB
     /// </summary>
     public static char RandomCharWithoutSpecial()
@@ -178,23 +181,23 @@ public static partial class RandomHelper
         if (upper) ch.AddRange(letterAndDigitChar.upperChars);
 
         delka--;
-        var sb = new StringBuilder();
-        for (var i = 0; i != delka; i++) sb.Append(RandomElementOfCollection(ch));
-        return sb.ToString();
+        var stringBuilder = new StringBuilder();
+        for (var i = 0; i != delka; i++) stringBuilder.Append(RandomElementOfCollection(ch));
+        return stringBuilder.ToString();
     }
 
     public static string RandomString()
     {
-        var sb = new StringBuilder();
-        for (var i = 0; i < 7; i++) sb.Append(RandomChar());
-        return sb.ToString();
+        var stringBuilder = new StringBuilder();
+        for (var i = 0; i < 7; i++) stringBuilder.Append(RandomChar());
+        return stringBuilder.ToString();
     }
 
     public static byte[] RandomBytes(int kolik)
     {
-        var b = new byte[kolik];
-        for (var i = 0; i < kolik; i++) b[i] = (byte)s_rnd.Next(0, byte.MaxValue);
-        return b;
+        var buffer = new byte[kolik];
+        for (var i = 0; i < kolik; i++) buffer[i] = (byte)s_rnd.Next(0, byte.MaxValue);
+        return buffer;
     }
 
 
@@ -208,7 +211,7 @@ public static partial class RandomHelper
     }
 
     /// <summary>
-    ///     Vr�t� ��slo mezi A1 v�etn� a A2+1 v�etn�
+    ///     Vr�t� ��slo mezi A1 value�etn� a A2+1 value�etn�
     /// </summary>
     /// <param name="to"></param>
     public static short RandomShort(short from, short to)
@@ -258,9 +261,9 @@ public static partial class RandomHelper
     public static string RandomString(int delka)
     {
         delka--;
-        var sb = new StringBuilder();
-        for (var i = 0; i != delka; i++) sb.Append(RandomChar());
-        return sb.ToString();
+        var stringBuilder = new StringBuilder();
+        for (var i = 0; i != delka; i++) stringBuilder.Append(RandomChar());
+        return stringBuilder.ToString();
     }
 
 
