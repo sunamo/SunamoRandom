@@ -1,7 +1,4 @@
-// EN: Variable names have been checked and replaced with self-descriptive names
-// CZ: Názvy proměnných byly zkontrolovány a nahrazeny samopopisnými názvy
 namespace SunamoRandom;
-
 
 /// <summary>
 ///     For easy copy where is needed generate random sting and is not availbale other methods (like
