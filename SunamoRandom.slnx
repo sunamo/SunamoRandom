@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="SunamoRandom.Tests\\SunamoRandom.Tests.csproj" />
+  <Project Path="RunnerRandom\\RunnerRandom.csproj" />
+  <Project Path="SunamoRandom\SunamoRandom.csproj" />
+</Solution>
