@@ -3,31 +3,36 @@ namespace SunamoRandom;
 public static partial class RandomHelper
 {
     /// <summary>
-    ///     Vrac� ��slo od A1 do A2-1
+    /// Returns a random number from <paramref name="from"/> to <paramref name="to"/> - 1 (exclusive upper bound).
     /// </summary>
-    /// <param name="od"></param>
-    /// <param name="to"></param>
-    public static int RandomInt2(int od, int to)
+    /// <param name="from">Minimum value (inclusive).</param>
+    /// <param name="to">Maximum value (exclusive).</param>
+    /// <returns>A random integer.</returns>
+    public static int RandomInt2(int from, int to)
     {
-        return s_rnd.Next(od, to);
-    }
-
-    public static int RandomInt()
-    {
-        return s_rnd.Next(0, int.MaxValue);
+        return randomGenerator.Next(from, to);
     }
 
     /// <summary>
-    ///     Vr�t� ��slo mezi A1 a A2 v�etn�
+    /// Returns a random number between 0 and int.MaxValue - 1.
     /// </summary>
-    /// <param name="od"></param>
-    /// <param name="to"></param>
-    /// \
-    public static int RandomInt(int od, int to)
+    /// <returns>A random integer.</returns>
+    public static int RandomInt()
+    {
+        return randomGenerator.Next(0, int.MaxValue);
+    }
+
+    /// <summary>
+    /// Returns a random number between <paramref name="from"/> and <paramref name="to"/> inclusive.
+    /// </summary>
+    /// <param name="from">Minimum value (inclusive).</param>
+    /// <param name="to">Maximum value (inclusive).</param>
+    /// <returns>A random integer.</returns>
+    public static int RandomInt(int from, int to)
     {
         if (to == int.MaxValue) to--;
-        if (od > to) throw new Exception($"From {od} is higher than to {to}");
+        if (from > to) throw new Exception($"From {from} is higher than to {to}");
 
-        return s_rnd.Next(od, to + 1);
+        return randomGenerator.Next(from, to + 1);
     }
 }

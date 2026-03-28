@@ -1,7 +1,16 @@
 namespace SunamoRandom;
 
+/// <summary>
+/// Provides methods for generating lists of random numbers.
+/// </summary>
 public class RandomHelperList
 {
+    /// <summary>
+    /// Generates a list of random numbers with the specified digit length.
+    /// </summary>
+    /// <param name="length">Number of digits for each generated number.</param>
+    /// <param name="count">Number of random numbers to generate.</param>
+    /// <returns>A list of random integers with the specified digit length.</returns>
     public static List<int> GenerateNumbers(int length, int count)
     {
         List<int> result = new(count);
