@@ -130,7 +130,11 @@ public static partial class RandomHelper
     public static T RandomEnum<T>()
         where T : struct, Enum
     {
+#if NET48
+        var values = (T[])Enum.GetValues(typeof(T));
+#else
         var values = Enum.GetValues<T>();
+#endif
         var result = RandomElementOfCollectionT(values);
         return result;
     }
