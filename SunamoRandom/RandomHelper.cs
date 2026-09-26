@@ -28,14 +28,14 @@ public static partial class RandomHelper
     public static float RandomFloat(int decimalDigits, float maxValue, int maxIntegerDigits)
     {
         if (decimalDigits > 7) decimalDigits = 7;
-        var integerPart = "";
+        string integerPart;
         if (maxIntegerDigits > 8)
             integerPart = RandomNumberString(decimalDigits);
         else
             integerPart = RandomInt(maxIntegerDigits + 1).ToString();
 
         var decimalLength = 7 - decimalDigits;
-        float result = 0;
+        float result;
         if (decimalLength != 0)
         {
             var decimalPart = RandomNumberString(decimalLength);
@@ -130,7 +130,11 @@ public static partial class RandomHelper
     public static T RandomEnum<T>()
         where T : struct, Enum
     {
+#if NET48 || NETSTANDARD2_0
+        var values = (T[])Enum.GetValues(typeof(T));
+#else
         var values = Enum.GetValues<T>();
+#endif
         var result = RandomElementOfCollectionT(values);
         return result;
     }
@@ -272,7 +276,7 @@ public static partial class RandomHelper
     public static bool RandomBool()
     {
         var index = RandomInt(2);
-        var boolText = "";
+        string boolText;
         if (index == 0)
             boolText = bool.FalseString;
         else
