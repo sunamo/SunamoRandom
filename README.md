@@ -1,5 +1,10 @@
 # SunamoRandom
 
+## Short description
+
+Lehká knihovna pro generování náhodných hodnot: celých čísel, desetinných čísel, bajtů, řetězců, logických hodnot, DateTime i hodnot enumu. Obsahuje Runner a testy.
+
+
 A lightweight .NET library for generating random values of various types including integers, floats, bytes, strings, booleans, DateTimes, and enum values.
 
 ## Overview
