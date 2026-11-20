@@ -1,7 +1,16 @@
 namespace SunamoRandom;
 
+/// <summary>
+/// Represents the random helper list type.
+/// </summary>
 public class RandomHelperList
 {
+    /// <summary>
+    /// Generate numbers.
+    /// </summary>
+    /// <param name="length">The length.</param>
+    /// <param name="count">The count.</param>
+    /// <returns>The generate numbers result.</returns>
     public static List<int> GenerateNumbers(int length, int count)
     {
         List<int> result = new(count);

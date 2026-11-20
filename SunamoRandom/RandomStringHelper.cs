@@ -1,5 +1,8 @@
 namespace SunamoRandom;
 
+/// <summary>
+/// Represents the random string helper type.
+/// </summary>
 public class RandomStringHelper
 {
     private static readonly Random random = new();
@@ -7,6 +10,12 @@ public class RandomStringHelper
 
     private static char[]? stringChars;
 
+    /// <summary>
+    /// Random string.
+    /// </summary>
+    /// <param name="length">The length.</param>
+    /// <param name="numberOfNonAlphanumericCharacters">The number of non alphanumeric characters.</param>
+    /// <returns>The random string result.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string RandomString(int length, int numberOfNonAlphanumericCharacters)
     {

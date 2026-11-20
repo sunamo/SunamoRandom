@@ -1,15 +1,26 @@
 namespace SunamoRandom;
 
+/// <summary>
+/// Represents the random helper type.
+/// </summary>
 public static partial class RandomHelper
 {
     private static readonly Random random = new();
     private static readonly float lightColorBase = 256 - 229;
 
+    /// <summary>
+    /// Gets or sets the type.
+    /// </summary>
     public static Type Type { get; set; } = typeof(RandomHelper);
 
     // Highly random generator. The seed is always different because the seed is also randomly generated.
     private static readonly Random randomGenerator = new(Guid.NewGuid().GetHashCode());
 
+    /// <summary>
+    /// Random float.
+    /// </summary>
+    /// <param name="Guid.NewGuid().GetHashCode()">The guid new guid get hash code.</param>
+    /// <returns>The random float result.</returns>
     public static float RandomFloat(int decimalDigits, float maxValue, int maxIntegerDigits)
     {
         if (decimalDigits > 7) decimalDigits = 7;
@@ -49,6 +60,10 @@ public static partial class RandomHelper
         return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Random color part.
+    /// </summary>
+    /// <returns>The random color part result.</returns>
     public static byte RandomColorPart(bool isLight, float add)
     {
         if (isLight)
@@ -61,11 +76,21 @@ public static partial class RandomHelper
         return RandomByte(0, 255);
     }
 
+    /// <summary>
+    /// Random byte.
+    /// </summary>
+    /// <param name="0">The 0.</param>
+    /// <param name="255">The 255.</param>
+    /// <returns>The random byte result.</returns>
     public static byte RandomByte(int from, int toInclusive)
     {
         return (byte)randomGenerator.Next(from, toInclusive + 1);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the random color part class.
+    /// </summary>
+    /// <param name="byte">The byte.</param>
     public static byte RandomColorPart(bool isLight)
     {
         return RandomColorPart(isLight, 127f);
@@ -76,6 +101,12 @@ public static partial class RandomHelper
         return RandomFloat(1, 1, 0);
     }
 
+    /// <summary>
+    /// Random element of collection t t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <param name="list">The list.</param>
+    /// <returns>The random element of collection t t result.</returns>
     [return: MaybeNull]
     public static T RandomElementOfCollectionT<T>(IList<T> list)
     {
@@ -84,6 +115,11 @@ public static partial class RandomHelper
         return list[index];
     }
 
+    /// <summary>
+    /// Random enum t.
+    /// </summary>
+    /// <typeparam name="T">The type T.</typeparam>
+    /// <returns>The random enum t result.</returns>
     public static T RandomEnum<T>()
         where T : struct, Enum
     {
@@ -96,6 +132,11 @@ public static partial class RandomHelper
         return result;
     }
 
+    /// <summary>
+    /// Random element of collection.
+    /// </summary>
+    /// <param name="array">The array.</param>
+    /// <returns>The random element of collection result.</returns>
     public static string RandomElementOfCollection(Array array)
     {
         var index = RandomInt(array.Length);
@@ -104,6 +145,12 @@ public static partial class RandomHelper
 
     // Generates a random string without special characters containing only lowercase/uppercase letters and digits.
     // Call ToLower when saving to DB. Newly calls ToLower automatically.
+    /// <summary>
+    /// Random string without special.
+    /// </summary>
+    /// <param name="length">The length.</param>
+    /// <param name="isAlsoUpper">The is also upper.</param>
+    /// <returns>The random string without special result.</returns>
     public static string RandomStringWithoutSpecial(int length, bool isAlsoUpper = false)
     {
         length--;
@@ -114,6 +161,12 @@ public static partial class RandomHelper
         return result;
     }
 
+    /// <summary>
+    /// Random byte 2.
+    /// </summary>
+    /// <param name="from">The from.</param>
+    /// <param name="to">The to.</param>
+    /// <returns>The random byte 2 result.</returns>
     public static byte RandomByte2(int from, int to)
     {
         return (byte)randomGenerator.Next(from, to);
@@ -121,12 +174,21 @@ public static partial class RandomHelper
 
     // Returns a random character from uppercase, lowercase letters and digits.
     // Call ToLower when saving to DB.
+    /// <summary>
+    /// Random char without special.
+    /// </summary>
+    /// <returns>The random char without special result.</returns>
     public static char RandomCharWithoutSpecial()
     {
         LetterAndDigitCharService letterAndDigitChar = new LetterAndDigitCharService();
         return RandomElementOfCollection(letterAndDigitChar.AllCharsWithoutSpecial)[0];
     }
 
+    /// <summary>
+    /// Random string.
+    /// </summary>
+    /// <param name="letterAndDigitChar.AllCharsWithoutSpecial">The letter and digit char all chars without special.</param>
+    /// <returns>The random string result.</returns>
     public static string RandomString(int length, bool isUpper, bool isLower, bool isNumeric, bool isSpecial)
     {
         LetterAndDigitCharService letterAndDigitChar = new();
@@ -144,6 +206,10 @@ public static partial class RandomHelper
         return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Random string.
+    /// </summary>
+    /// <returns>The random string result.</returns>
     public static string RandomString()
     {
         var stringBuilder = new StringBuilder();
@@ -151,6 +217,10 @@ public static partial class RandomHelper
         return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Random bytes.
+    /// </summary>
+    /// <returns>The random bytes result.</returns>
     public static byte[] RandomBytes(int count)
     {
         var buffer = new byte[count];
@@ -158,21 +228,38 @@ public static partial class RandomHelper
         return buffer;
     }
 
+    /// <summary>
+    /// Random short.
+    /// </summary>
+    /// <param name="to">The to.</param>
+    /// <returns>The random short result.</returns>
     public static short RandomShort(short to)
     {
         return (short)randomGenerator.Next(0, to);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the random short class.
+    /// </summary>
+    /// <param name="short">The short.</param>
     public static short RandomShort(short from, short to)
     {
         return (short)randomGenerator.Next(from, to + 1);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the random short class.
+    /// </summary>
+    /// <param name="short">The short.</param>
     public static short RandomShort()
     {
         return (short)randomGenerator.Next(0, short.MaxValue);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the random bool class.
+    /// </summary>
+    /// <param name="short">The short.</param>
     public static bool RandomBool()
     {
         var index = RandomInt(2);
@@ -184,6 +271,11 @@ public static partial class RandomHelper
         return bool.Parse(boolText);
     }
 
+    /// <summary>
+    /// Random date time.
+    /// </summary>
+    /// <param name="boolText">The bool text.</param>
+    /// <returns>The random date time result.</returns>
     public static DateTime RandomDateTime(int yearTo)
     {
         DateTime result = new(1900, 1, 1);
@@ -204,6 +296,12 @@ public static partial class RandomHelper
         return RandomInt(minimum, maximum);
     }
 
+    /// <summary>
+    /// Random string.
+    /// </summary>
+    /// <param name="minimum">The minimum.</param>
+    /// <param name="maximum">The maximum.</param>
+    /// <returns>The random string result.</returns>
     public static string RandomString(int length)
     {
         length--;
@@ -212,18 +310,31 @@ public static partial class RandomHelper
         return stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Random char.
+    /// </summary>
+    /// <returns>The random char result.</returns>
     public static char RandomChar()
     {
         LetterAndDigitCharService letterAndDigitChar = new();
         return RandomElementOfCollection(letterAndDigitChar.AllChars)[0];
     }
 
+    /// <summary>
+    /// Random element of collection.
+    /// </summary>
+    /// <param name="letterAndDigitChar.AllChars">The letter and digit char all chars.</param>
+    /// <returns>The random element of collection result.</returns>
     public static string RandomElementOfCollection(IList list)
     {
         var index = RandomInt(list.Count);
         return list[index]?.ToString() ?? string.Empty;
     }
 
+    /// <summary>
+    /// Random int.
+    /// </summary>
+    /// <returns>The random int result.</returns>
     public static int RandomInt(int to)
     {
         return randomGenerator.Next(0, to);
